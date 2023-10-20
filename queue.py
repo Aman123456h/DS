@@ -1,59 +1,57 @@
-print("List Operation")
-l=["Maharashtra","Delhi","Bihar","Uttar Pradesh","Andhra Pradesh","Arunachal Pradesh"]
-print(l)
-l.append("Punjab")
-print(l)
-l.insert(1,"Kerala")
-print(l)
-l.extend(["Tamil Nadu","Karnataka"])
-print(l)
-l.pop()
-print(l)
-l.remove("Kerala")
-print(l)
-del l[0]
-for i in l:
-    print(i)
+class Queue:
+    def __init__(self):
+        self.items = []
 
+    def is_empty(self):
+        return len(self.items) == 0
 
-print("Stack Operation")
-l=[]
-print(l)
-l.append("Punjab")
-print(l)
-l.append("Rajasthan")
-print(l)
-l.append("Manipur")
-print(l)
-l.pop()
-print(l)
-l.pop()
-print(l)
-l.pop()
-print(l)
-# l.pop()  -- It will throw Error
+    def enqueue(self, item):
+        self.items.append(item)
 
+    def dequeue(self):
+        if not self.is_empty():
+            return self.items.pop(0)
+        else:
+            return None
 
-print("Queue Operation")
-l=[]
-print(l)
-l.append(49)
-print(l)
-l.append(52)
-print(l)
-l.append(37)
-print(l)
-l.append(6)
-print(l)
-l.append(18)
-print(l)
-l.pop(0)
-print(l)
-l.pop(0)
-print(l)
-l.pop(0)
-print(l)
-l.pop(0)
-print(l)
-l.pop(0)
-print(l)
+    def size(self):
+        return len(self.items)
+
+def main():
+    my_queue = Queue()
+
+    while True:
+        print("\nQueue Operations:")
+        print("1. Enqueue")
+        print("2. Dequeue")
+        print("3. Front")
+        print("4. Size")
+        print("5. Quit")
+
+        choice = input("Enter your choice (1/2/3/4/5): ")
+
+        if choice == '1':
+            item = input("Enter the item to enqueue: ")
+            my_queue.enqueue(item)
+            print(f"{item} has been enqueued.")
+        elif choice == '2':
+            item = my_queue.dequeue()
+            if item is not None:
+                print(f"{item} has been dequeued.")
+            else:
+                print("Queue is empty.")
+        elif choice == '3':
+            if not my_queue.is_empty():
+                print(f"Front of the queue: {my_queue.items[0]}")
+            else:
+                print("Queue is empty.")
+        elif choice == '4':
+            print(f"Queue size: {my_queue.size()}")
+        elif choice == '5':
+            print("Exiting the program.")
+            break
+        else:
+            print("Invalid choice. Please enter a valid option (1/2/3/4/5).")
+
+if __name__ == "__main__":
+    main()
